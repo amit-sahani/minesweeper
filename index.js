@@ -1,3 +1,5 @@
+let score = 0;
+
 function createGrid(a) {
     let id = 1;
     arr = createRandomNoArray();
@@ -47,15 +49,25 @@ function boxClick(d) {
     if (d.getAttribute("isclicked") === '0') {
         console.log(arr.includes(id));
         if (!arr.includes(id)) {
-            d.style.backgroundColor = "#29a329";
+            d.style.backgroundColor = "#f5f5f0";
+            d.innerHTML = "<span class='number'>1</span>";
+            score++;
+            console.log(score);
+            document.getElementById("score").innerHTML = score;
 
         } else {
             let bomb = document.getElementsByClassName("bomb");
+            
             for (var i = 0; i < bomb.length; i++) {
                 bomb[i].style.backgroundImage = "url(https://img.icons8.com/emoji/48/000000/bomb-emoji.png)";
                 bomb[i].style.backgroundSize = "contain";
                 bomb[i].setAttribute("isClicked", "1");
                 bomb[i].style.backgroundColor = "#ffffff";
+
+            }
+            let box = document.getElementsByClassName("box");
+            for (var i = 0; i < box.length; i++) {
+                box[i].setAttribute("isClicked", "1");
 
             }
         }
@@ -65,6 +77,7 @@ function boxClick(d) {
 
 let arr;
 createGrid(9);
+
 function createRandomNoArray() {
     let num
     let arr = new Array(10);
